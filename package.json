@@ -1,0 +1,19 @@
+{
+  "name": "Game-Manager",
+  "version": "0.0.1",
+  "description": "A small tool for managing games played for money",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/M-Zuber/Game-Manager.git"
+  },
+  "author": "M-Zuber",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/M-Zuber/Game-Manager/issues"
+  },
+  "homepage": "https://github.com/M-Zuber/Game-Manager"
+}
