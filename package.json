@@ -1,6 +1,6 @@
 {
   "name": "Game-Manager",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "A small tool for managing games played for money",
   "main": "app.js",
   "scripts": {
