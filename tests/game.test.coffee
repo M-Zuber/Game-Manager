@@ -1,11 +1,11 @@
-Game = require "../src/game"
+{Game} = require "../src/game"
 chai = require "chai"
 
 chai.should()
 
 describe "The Game object", ->
   describe "Defaults", ->
-    game = new Game.Game()
+    game = new Game()
     
     it "should return the default cost", (done) ->
       game.cost.should.eql 10
@@ -18,7 +18,7 @@ describe "The Game object", ->
       done()
 
   describe "With Paramters", ->
-    game = new Game.Game(20, 100, [{name:"first"}, {name:"second"}])
+    game = new Game(20, 100, [{name:"first"}, {name:"second"}])
     
     it "should return the cost given", (done) ->
       game.cost.should.eql 20
@@ -31,7 +31,7 @@ describe "The Game object", ->
       done()
 
   describe "Actions", ->
-    game = new Game.Game(10, 100, [{name: "first"}, {name: "second"}])
+    game = new Game(10, 100, [{name: "first"}, {name: "second"}])
 
     it "should return the correct net winnings", (done) ->
       game.netWinnings().should.eql 90
