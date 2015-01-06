@@ -1,6 +1,5 @@
 {Game} = require "../src/game"
 chai = require "chai"
-
 chai.should()
 
 describe "The Game object", ->

@@ -7,9 +7,10 @@
     "test": "*.js"
   },
   "scripts": {
-    "test": "mocha tests/*.test.coffee tests/**/*.test.coffee --compilers coffee:coffee-script --reporter spec --watch",
+    "test": "mocha test/*.test.coffee test/**/*.test.coffee --compilers coffee:coffee-script --reporter spec --watch",
     "watch": "npm-watch",
-    "compile": "coffee -cw ./src/*.coffee ./tests/*.coffee"
+    "compile-src": "coffee -o ./src/js/ -c ./src/*.coffee \n coffee -o ./src/Utilities/js -c ./src/Utilities/*.coffee",
+    "compile-tst": "coffee -o ./test/js/ -cw ./test/*.coffee"
   },
   "repository": {
     "type": "git",
