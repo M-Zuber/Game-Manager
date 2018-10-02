@@ -36,4 +36,42 @@ describe( "Game Manager",() =>{
       done()
     })
   })
+
+  describe('Removing a game', () => {
+    it('Removes the game with the given id', (done) => {
+      const gameOne = new Game(20, 100, [{ name: "first" }, { name: "second" }]);
+      const manager = new Manager([gameOne, new Game(20, 100, [{ name: "first" }, { name: "second" }])])
+      manager.removeGame(2);
+      manager.games[0].should.eql(gameOne);
+      manager.games.length.should.eql(1);
+      done();
+    });
+    it('Does nothing if the id does not exist', (done) => {
+      const manager = new Manager([new Game(20, 100, [{ name: "first" }, { name: "second" }]), new Game(20, 100, [{ name: "first" }, { name: "second" }])])
+      manager.removeGame(3);
+      manager.games.length.should.eql(2);
+      done();
+    });
+    it('Removes the game object passed in', (done) => {
+      const gameOne = new Game(20, 100, [{ name: "first" }, { name: "second" }]);
+      const gameTwo = new Game(20, 100, [{ name: "first" }, { name: "second" }]);
+      const manager = new Manager([gameOne, gameTwo])
+      manager.removeGame(gameOne);
+      manager.games[0].should.eql(gameTwo);
+      manager.games.length.should.eql(1);
+      done();
+    });
+    it('Does nothing if the game object passed does not exist in the list of games', (done) => {
+      const gameOne = new Game(20, 100, [{ name: "first" }, { name: "second" }]);
+      const gameTwo = new Game(20, 100, [{ name: "first" }, { name: "second" }]);
+      const gameThree = new Game(20, 100, [{ name: "first" }, { name: "second" }]);
+      const manager = new Manager([gameOne, gameTwo]);
+      manager.removeGame(gameThree);
+      console.log(manager.games)
+      manager.games[0].should.eql(gameOne);
+      manager.games[1].should.eql(gameTwo);
+      manager.games.length.should.eql(2);
+      done();
+    });
+  });
 })
