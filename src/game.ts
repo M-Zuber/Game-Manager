@@ -12,5 +12,9 @@ class Game {
   get winningsPerPlayer() {
     return this.netWinnings / (this.players.length || 1);
   }
+
+  get display() {
+    return `Cost: ${this.cost}. Winnings: ${this.winnings}. Net: ${this.netWinnings}`;
+  }
 }
 export default Game;

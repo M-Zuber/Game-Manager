@@ -29,6 +29,19 @@ class GameManager {
       this.games.splice(gameIndex, 1);
     }
   }
+
+  displayGame(id: number) {
+    const game =this.games.find(g => g.ID === id);
+    if (game) {
+      return game.display;
+    }
+    
+    return "";
+  }
+
+  displayGames() {
+    return this.games.map(g => g.display).join('\n').trim();
+  }
 }
 
 export default GameManager;
