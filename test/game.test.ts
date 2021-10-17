@@ -53,4 +53,13 @@ describe( "The Game object",() => {
       done()
     })
   })
+
+  describe("Display", () => {
+    const game = new Game(10, 100, [{name: "first"}, {name: "second"}])
+    
+    it("should output the desired string", (done) => {
+      game.display.should.eql("Cost: 10. Winnings: 100. Net: 90");
+      done();
+    })
+  })
 })

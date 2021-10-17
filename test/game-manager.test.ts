@@ -25,14 +25,14 @@ describe( "Game Manager",() =>{
   })
 
   describe( "Adding a game",() =>{
-    const manager = new Manager()
     it( "should contain the new game after adding it using the method", (done)=>{
+      const manager = new Manager()
       idFactory.resetCounter()
       const game = new Game(20, 100, [{name:"first"}, {name:"second"}])
       manager.addGame(game)
       manager.games.length.should.eql( 1)
-      manager.games[0].should.eql( game)
-      manager.games[0].ID.should.eql( 1)
+      manager.games[0].should.deep.eq(game)
+      
       done()
     })
   })
@@ -57,7 +57,7 @@ describe( "Game Manager",() =>{
       const gameTwo = new Game(20, 100, [{ name: "first" }, { name: "second" }]);
       const manager = new Manager([gameOne, gameTwo])
       manager.removeGame(gameOne);
-      manager.games[0].should.eql(gameTwo);
+      manager.games[0].should.deep.eq(gameTwo);
       manager.games.length.should.eql(1);
       done();
     });
@@ -67,10 +67,32 @@ describe( "Game Manager",() =>{
       const gameThree = new Game(20, 100, [{ name: "first" }, { name: "second" }]);
       const manager = new Manager([gameOne, gameTwo]);
       manager.removeGame(gameThree);
-      console.log(manager.games)
-      manager.games[0].should.eql(gameOne);
-      manager.games[1].should.eql(gameTwo);
+      manager.games[0].should.deep.eq(gameOne);
+      manager.games[1].should.deep.eq(gameTwo);
       manager.games.length.should.eql(2);
+      done();
+    });
+  });
+
+  describe("Display", () => {
+    const gameOne = new Game(10, 100, [{ name: "first" }, { name: "second" }]);
+    const gameTwo = new Game(20, 100, [{ name: "first" }, { name: "second" }]);
+    const gameThree = new Game(30, 100, [{ name: "first" }, { name: "second" }]);
+    const manager = new Manager([gameOne, gameTwo, gameThree]);
+    
+    it("Should return the display for the game with the given id", (done) => {
+      manager.displayGame(gameOne.ID).should.eql("Cost: 10. Winnings: 100. Net: 90");
+      
+      done();
+    });
+
+    it("Should return an empty string if the game is not found", (done) => {
+      manager.displayGame(10).should.eql("");
+      done();
+    });
+
+    it("Should display all games", (done) => {
+      manager.displayGames().should.eql("Cost: 10. Winnings: 100. Net: 90\nCost: 20. Winnings: 100. Net: 80\nCost: 30. Winnings: 100. Net: 70");
       done();
     });
   });
